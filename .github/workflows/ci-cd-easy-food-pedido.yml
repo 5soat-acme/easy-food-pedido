@@ -4,15 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       run_build:
-        description: 'Executar build'
-        required: false
-        default: false
-        type: boolean
+        description: "Executar build"
+        type: choice
+        required: true
+        default: 'false'
+        options:
+          - true
+          - false
       run_deploy:
-        description: 'Executar deploy'
-        required: false
-        default: false
-        type: boolean
+        description: "Executar deploy"
+        type: choice
+        required: true
+        default: 'false'
+        options:
+          - true
+          - false
   push:
     branches:
       - main
