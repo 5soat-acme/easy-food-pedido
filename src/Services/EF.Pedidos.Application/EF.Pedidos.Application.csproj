@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\EF.Core.Commons\EF.Core.Commons.csproj" />
+        <ProjectReference Include="..\..\Shared\EF.Infra.Commons\EF.Infra.Commons.csproj" />
+        <ProjectReference Include="..\EF.Pedidos.Domain\EF.Pedidos.Domain.csproj" />
+        <ProjectReference Include="..\EF.Produtos.Application\EF.Produtos.Application.csproj" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\EF.Infra.Commons\EF.Infra.Commons.csproj"/>
+        <ProjectReference Include="..\EF.Carrinho.Application\EF.Carrinho.Application.csproj"/>
+        <ProjectReference Include="..\EF.Carrinho.Domain\EF.Carrinho.Domain.csproj"/>
+        <ProjectReference Include="..\EF.Cupons.Application\EF.Cupons.Application.csproj"/>
+        <ProjectReference Include="..\EF.Estoques.Application\EF.Estoques.Application.csproj"/>
+        <ProjectReference Include="..\EF.Produtos.Application\EF.Produtos.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Data\Migrations\"/>
+    </ItemGroup>
+
+</Project>

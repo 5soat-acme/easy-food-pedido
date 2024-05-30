@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  #easy-food-pedido:
+    #image: 5soatacme/easy-food-pedido:latest
+    #container_name: easy-food-api
+    #build:
+    #  context: ../../
+    #  dockerfile: ./src/Presentation/EF.Api/Dockerfile
+    #restart: always
+    #environment:
+    #  ASPNETCORE_ENVIRONMENT: Docker
+    #  ASPNETCORE_URLS: http://+:80
+    #ports:
+    #  - "8080:80"
+    #depends_on:
+    #  - easy-food-db
+    #command: [ "./wait-db.sh", "db", "./migrations.sh" ]
+  
+  easy-food-pedido-db:
+    image: postgres:latest
+    container_name: easy-food-pedido-db
+    environment:
+      POSTGRES_USER: acme
+      POSTGRES_PASSWORD: acme
+      POSTGRES_DB: easy-food-pedido
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata-pedido:/var/lib/postgresql/data
+      - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata-pedido:

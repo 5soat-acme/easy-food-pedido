@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\EF.Core.Commons\EF.Core.Commons.csproj" />
+        <ProjectReference Include="..\..\Shared\EF.Infra.Commons\EF.Infra.Commons.csproj" />
+        <ProjectReference Include="..\EF.Cupons.Application\EF.Cupons.Application.csproj" />
+        <ProjectReference Include="..\EF.Estoques.Application\EF.Estoques.Application.csproj" />
+        <ProjectReference Include="..\EF.Pedidos.Application\EF.Pedidos.Application.csproj" />
+        <ProjectReference Include="..\EF.Pedidos.Domain\EF.Pedidos.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Data\Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Data\Migrations\PedidoDbContextModelSnapshot.cs" />
+        <Compile Remove="Data\Migrations\20240111193846_BaseInicialPedidos.cs" />
+        <Compile Remove="Data\Migrations\20240111193846_BaseInicialPedidos.Designer.cs" />
+    </ItemGroup>
+
+</Project>
