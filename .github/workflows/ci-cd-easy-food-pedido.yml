@@ -1,4 +1,4 @@
-name: CI/CD Easy Food
+name: CI/CD Easy Food Pedido
 
 on:
   workflow_dispatch:
