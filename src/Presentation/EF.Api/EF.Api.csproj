@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>1884b85e-25f6-4d91-a0ef-e073fbddc3ba</UserSecretsId>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+        <Content Update="appsettings.Development.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Services\EF.Carrinho.Application\EF.Carrinho.Application.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Carrinho.Infra\EF.Carrinho.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Pedidos.Application\EF.Pedidos.Application.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Pedidos.Domain\EF.Pedidos.Domain.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Pedidos.Infra\EF.Pedidos.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Produtos.Infra\EF.Produtos.Infra.csproj" />
+        <ProjectReference Include="..\..\Shared\EF.Core.Commons\EF.Core.Commons.csproj" />
+        <ProjectReference Include="..\..\Shared\EF.WebApi.Commons\EF.WebApi.Commons.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Estoques.Application\EF.Estoques.Application.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Estoques.Infra\EF.Estoques.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Cupons.Application\EF.Cupons.Application.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Cupons.Infra\EF.Cupons.Infra.csproj" />
+    </ItemGroup>
+
+</Project>

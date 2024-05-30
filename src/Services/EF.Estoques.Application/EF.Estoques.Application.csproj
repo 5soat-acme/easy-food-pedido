@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\EF.Infra.Commons\EF.Infra.Commons.csproj"/>
+        <ProjectReference Include="..\EF.Estoques.Domain\EF.Estoques.Domain.csproj"/>
+    </ItemGroup>
+
+</Project>
