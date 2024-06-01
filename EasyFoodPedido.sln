@@ -71,6 +71,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{13
 		deploy\database\init.sql = deploy\database\init.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identidade", "Identidade", "{98553144-EAE6-43C2-B042-CA4FBC212EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Identidade.Application", "src\Services\EF.Identidade.Application\EF.Identidade.Application.csproj", "{40640BA5-D82C-439B-A02A-31962087CFA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +157,10 @@ Global
 		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40640BA5-D82C-439B-A02A-31962087CFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40640BA5-D82C-439B-A02A-31962087CFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40640BA5-D82C-439B-A02A-31962087CFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40640BA5-D82C-439B-A02A-31962087CFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +195,8 @@ Global
 		{955A5C59-C7C7-4D20-B62D-5271E8EAE9DA} = {E9DEF209-F4AD-4105-9DC8-A8F2DCD952F4}
 		{807825CE-FDF9-4BA6-8D4B-5BC22648D672} = {ADA9D63D-AF53-4AAD-9A3C-49C95B373A36}
 		{13BEECA4-7942-4A3A-8F81-41A4D3F73473} = {13ABF460-2024-4387-89C6-9DCE83BF78A6}
+		{98553144-EAE6-43C2-B042-CA4FBC212EAE} = {B790782A-FF16-4B8A-9993-23CC03C96503}
+		{40640BA5-D82C-439B-A02A-31962087CFA7} = {98553144-EAE6-43C2-B042-CA4FBC212EAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EF48A17-2E1D-4950-95B3-8C7206DD4E91}
