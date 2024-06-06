@@ -34,14 +34,6 @@ public class CarrinhoCliente : Entity, IAggregateRoot
     public void AdicionarItem(Item item)
     {
         item.AssociarCarrinho(Id);
-        var itemExistente = ObterItemPorProdutoId(item.ProdutoId);
-
-        if (itemExistente is not null)
-        {
-            itemExistente.AtualizarQuantidade(itemExistente.Quantidade + item.Quantidade);
-            item = itemExistente;
-            _itens.Remove(itemExistente);
-        }
 
         _itens.Add(item);
         CalcularValorTotal();
@@ -86,7 +78,7 @@ public class CarrinhoCliente : Entity, IAggregateRoot
     {
         var item = _itens.FirstOrDefault(f => f.Id == itemId);
 
-        if (item is null) throw new DomainException("Item não econtrado");
+        if (item is null) throw new DomainException("Item não encontrado");
 
         item.AtualizarQuantidade(quantidade);
 
