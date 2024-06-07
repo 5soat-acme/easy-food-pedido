@@ -157,11 +157,10 @@ public class ProdutoRepositoryTest : IDisposable
         var prodRemover = await repository.BuscarPorId(produto.Id);
         repository.Remover(prodRemover!);
         bool commit = await _context.Commit();
-        var prodBusca = await repository.BuscarPorId(produto.Id);
 
         // Assert
         commit.Should().BeTrue();
-        prodBusca.Should().BeNull();
+        _context.Produtos.Should().HaveCount(0);
     }
 
     protected virtual void Dispose(bool disposing)

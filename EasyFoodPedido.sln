@@ -109,6 +109,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Produtos.Infra.Test", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Cupons.Infra.Test", "test\Unit\EF.Cupons.Infra.Test\EF.Cupons.Infra.Test.csproj", "{30111561-DA92-471C-83A4-895F2465D3C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Carrinho.Infra.Test", "test\Unit\EF.Carrinho.Infra.Test\EF.Carrinho.Infra.Test.csproj", "{0679365E-CDA8-4E41-8C67-835DBB858E5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -227,6 +229,10 @@ Global
 		{30111561-DA92-471C-83A4-895F2465D3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30111561-DA92-471C-83A4-895F2465D3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30111561-DA92-471C-83A4-895F2465D3C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0679365E-CDA8-4E41-8C67-835DBB858E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0679365E-CDA8-4E41-8C67-835DBB858E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0679365E-CDA8-4E41-8C67-835DBB858E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0679365E-CDA8-4E41-8C67-835DBB858E5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -279,6 +285,7 @@ Global
 		{59360733-21D3-415F-B65D-37391CB0A343} = {09918AF5-34FB-4B71-8007-CB68DDF73CF1}
 		{23431C3D-8564-4EE9-902A-F4BDB3133474} = {09918AF5-34FB-4B71-8007-CB68DDF73CF1}
 		{30111561-DA92-471C-83A4-895F2465D3C8} = {2DF487E9-9356-46B8-A090-38F13C005500}
+		{0679365E-CDA8-4E41-8C67-835DBB858E5D} = {121A73B4-2358-43E9-A96F-9022F7D0FAC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EF48A17-2E1D-4950-95B3-8C7206DD4E91}
