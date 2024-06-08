@@ -1,13 +1,12 @@
 ﻿using AutoFixture;
 using AutoFixture.AutoMoq;
-using EF.Carrinho.Domain.Models;
-using EF.Carrinho.Infra.Adapters.Produtos;
+using EF.Pedidos.Infra.Adapters.Produtos;
 using EF.Produtos.Application.DTOs.Responses;
 using EF.Produtos.Application.UseCases.Interfaces;
 using FluentAssertions;
 using Moq;
 
-namespace EF.Carrinho.Infra.Test.Adapters.Produtos;
+namespace EF.Pedidos.Infra.Test.Adapters.Produtos;
 
 public class ProdutoAdapterTest
 {
@@ -19,11 +18,18 @@ public class ProdutoAdapterTest
     }
 
     [Fact]
-    public async Task DeveBuscarItemPorProdutoId()
+    public async Task DeveObterProdutoPorId()
     {
         // Arrange
         var produtoDto = _fixture.Create<ProdutoDto>();
-        var itemEsperado = new Item(produtoDto.Id, produtoDto.Nome, produtoDto.ValorUnitario, produtoDto.TempoPreparoEstimado);
+        var produtoEsperado = new EF.Pedidos.Application.DTOs.Gateways.ProdutoDto()
+        {
+            Id = produtoDto.Id,
+            Nome = produtoDto.Nome,
+            Descricao = produtoDto.Descricao,
+            ValorUnitario = produtoDto.ValorUnitario,
+            TempoPreparoEstimado = produtoDto.TempoPreparoEstimado
+        };
 
         var consultarProdutoUseCaseMock = _fixture.Freeze<Mock<IConsultarProdutoUseCase>>();
         consultarProdutoUseCaseMock.Setup(x => x.BuscarPorId(produtoDto.Id)).ReturnsAsync(produtoDto);
@@ -31,28 +37,25 @@ public class ProdutoAdapterTest
         var adapter = _fixture.Create<ProdutoAdapter>();
 
         // Act
-        var resultado = await adapter.ObterItemPorProdutoId(produtoDto.Id);
+        var resultado = await adapter.ObterPorId(produtoDto.Id);
 
         // Assert
-        resultado.Should().BeEquivalentTo(itemEsperado, options =>
-            options.Excluding(x => x.Id)
-                   .ComparingByMembers<Item>());
+        resultado.Should().BeEquivalentTo(produtoEsperado);
     }
 
     [Fact]
-    public async Task DeveBuscarItemNuloPorProdutoId()
+    public async Task DeveObterProdutoNuloPorId()
     {
         // Arrange
-        var produtoDto = _fixture.Create<ProdutoDto>();
+        var produtoDto = _fixture.Create<EF.Produtos.Application.DTOs.Responses.ProdutoDto>();
 
         var consultarProdutoUseCaseMock = _fixture.Freeze<Mock<IConsultarProdutoUseCase>>();
         consultarProdutoUseCaseMock.Setup(x => x.BuscarPorId(produtoDto.Id)).ReturnsAsync((ProdutoDto?)null);
 
-
         var adapter = _fixture.Create<ProdutoAdapter>();
 
         // Act
-        var resultado = await adapter.ObterItemPorProdutoId(produtoDto.Id);
+        var resultado = await adapter.ObterPorId(produtoDto.Id);
 
         // Assert
         resultado.Should().BeNull();

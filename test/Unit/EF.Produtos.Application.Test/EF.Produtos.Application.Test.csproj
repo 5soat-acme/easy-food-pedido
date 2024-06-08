@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Services\EF.Cupons.Infra\EF.Cupons.Infra.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\EF.Produtos.Application\EF.Produtos.Application.csproj" />
     <ProjectReference Include="..\..\Utils\EF.Test.Utils\EF.Test.Utils.csproj" />
   </ItemGroup>
 

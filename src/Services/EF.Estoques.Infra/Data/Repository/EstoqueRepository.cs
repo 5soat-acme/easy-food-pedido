@@ -16,12 +16,12 @@ public sealed class EstoqueRepository : IEstoqueRepository
 
     public IUnitOfWork UnitOfWork => _dbContext;
 
-    public async Task<Estoque?> Buscar(Guid produtoId, CancellationToken cancellationToken)
+    public async Task<Estoque?> Buscar(Guid produtoId, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Estoques.FirstOrDefaultAsync(x => x.ProdutoId == produtoId, cancellationToken);
     }
 
-    public async Task<Estoque> Salvar(Estoque estoque, CancellationToken cancellationToken)
+    public async Task<Estoque> Salvar(Estoque estoque, CancellationToken cancellationToken = default)
     {
         var estoqueExistente = _dbContext.Estoques
             .Where(p => p.Id == estoque.Id)
