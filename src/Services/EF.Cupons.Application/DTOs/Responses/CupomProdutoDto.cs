@@ -1,6 +1,6 @@
 ﻿namespace EF.Cupons.Application.DTOs.Responses;
 
-public record CupomProdutoDto
+public class CupomProdutoDto
 {
     public Guid ProdutoId { get; init; }
 }

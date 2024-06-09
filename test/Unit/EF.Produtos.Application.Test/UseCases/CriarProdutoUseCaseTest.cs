@@ -6,7 +6,6 @@ using EF.Produtos.Application.UseCases.Interfaces;
 using EF.Produtos.Domain.Models;
 using EF.Produtos.Domain.Repository;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace EF.Produtos.Application.Test.UseCases;
@@ -31,10 +30,10 @@ public class CriarProdutoUseCaseTest
         var produtoRepositoryMock = _fixture.Freeze<Mock<IProdutoRepository>>();
         produtoRepositoryMock.Setup(x => x.Criar(It.IsAny<Produto>()));
 
-        var adapter = _fixture.Create<ICriarProdutoUseCase>();
+        var useCase = _fixture.Create<ICriarProdutoUseCase>();
 
         // Act
-        var resultado = await adapter.Handle(produtoDto);
+        var resultado = await useCase.Handle(produtoDto);
 
         // Assert
         produtoRepositoryMock.Verify(x => x.Criar(It.IsAny<Produto>()), Times.Once);
@@ -42,5 +41,4 @@ public class CriarProdutoUseCaseTest
         resultado.IsValid.Should().BeTrue();
         resultado.ValidationResult.IsValid.Should().BeTrue();
     }
-
 }

@@ -87,6 +87,7 @@ public class CarrinhoRepositoryTest : IDisposable
         carrinhoSalvo.Should().NotBeNull();
         carrinhoSalvo.Should().BeEquivalentTo(carrinho);
         carrinhoSalvo!.Itens.Should().HaveCount(1);
+        carrinhoSalvo!.DataCriacao.Date.Should().Be(DateTime.UtcNow.Date);
     }
 
     [Fact]
@@ -119,6 +120,7 @@ public class CarrinhoRepositoryTest : IDisposable
         _context.Carrinhos.Should().Contain(carrinhoAtualizar);
         var carrinhoSalvo = await _context.Carrinhos!.FindAsync(carrinhoAtualizar.Id);
         carrinhoSalvo!.ValorTotal.Should().Be(carrinhoAtualizar.ValorTotal);
+        carrinhoSalvo!.DataAtualizacao.Should().NotBeNull();
     }
 
     [Fact]

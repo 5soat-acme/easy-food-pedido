@@ -1,6 +1,6 @@
 ﻿namespace EF.Cupons.Application.DTOs.Requests;
 
-public record CriarCupomDto
+public class CriarCupomDto
 {
     public DateTime DataInicio { get; init; }
     public DateTime DataFim { get; init; }

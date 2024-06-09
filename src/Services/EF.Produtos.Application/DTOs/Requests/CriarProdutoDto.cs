@@ -2,7 +2,7 @@
 
 namespace EF.Produtos.Application.DTOs.Requests;
 
-public record CriarProdutoDto
+public class CriarProdutoDto
 {
     public string Nome { get; init; }
     public decimal ValorUnitario { get; init; }

@@ -2,7 +2,7 @@
 
 namespace EF.Estoques.Application.DTOs.Requests;
 
-public record AtualizarEstoqueDto
+public class AtualizarEstoqueDto
 {
     public Guid ProdutoId { get; init; }
     public int Quantidade { get; init; }
