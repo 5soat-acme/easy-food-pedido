@@ -42,9 +42,4 @@ public sealed class EstoqueRepository : IEstoqueRepository
 
         return estoque;
     }
-
-    public void Dispose()
-    {
-        _dbContext.Dispose();
-    }
 }

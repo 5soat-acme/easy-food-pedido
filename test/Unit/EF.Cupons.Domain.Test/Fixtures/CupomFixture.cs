@@ -24,7 +24,7 @@ public class CupomFixture
             .CustomInstantiator(f => new Cupom(dataInicio ?? DateTime.Now,
                 dataFim ?? DateTime.Now.AddDays(7),
                 codigoCupom ?? $"cupom{f.Random.Number(10000)}",
-                porcentagemDesconto ?? ((decimal)f.Random.Number(99) / 100),
+                porcentagemDesconto ?? ((decimal)f.Random.Number(1, 99) / 100),
                 status ?? CupomStatus.Ativo));
 
         return estoques.Generate(quantidade);

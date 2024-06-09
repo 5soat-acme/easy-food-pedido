@@ -44,6 +44,9 @@ public class PedidoRepositoryTest : IDisposable
 
         // Assert
         result.Should().BeEquivalentTo(pedido);
+        result.Itens.Should().HaveCount(1);
+        result.Itens.First().PedidoId.Should().Be(pedido.Id);
+        result.Itens.First().Pedido.Should().NotBeNull();
     }
 
     [Fact]
@@ -66,6 +69,8 @@ public class PedidoRepositoryTest : IDisposable
         pedidoSalvo.Should().NotBeNull();
         pedidoSalvo.Should().BeEquivalentTo(pedido);
         pedidoSalvo!.Itens.Should().HaveCount(1);
+        pedidoSalvo!.DataCriacao.Date.Should().Be(DateTime.UtcNow.Date);
+        repository.UnitOfWork.Should().Be(_context);
     }
 
     [Fact]
@@ -96,6 +101,7 @@ public class PedidoRepositoryTest : IDisposable
         _context.Pedidos.Should().Contain(pedidoAtualizar);
         var pedidoSalvo = await _context.Pedidos!.FindAsync(pedidoAtualizar.Id);
         pedidoSalvo!.ValorTotal.Should().Be(pedidoAtualizar.ValorTotal);
+        pedidoSalvo!.DataAtualizacao.Should().NotBeNull();
     }
 
     protected virtual void Dispose(bool disposing)

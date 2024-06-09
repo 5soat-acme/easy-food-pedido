@@ -139,6 +139,8 @@ public class CupomRepositoryTest : IDisposable
         cupomSalvo.Should().NotBeNull();
         cupomSalvo.Should().BeEquivalentTo(cupom);
         cupomSalvo!.CupomProdutos.Should().HaveCount(1);
+        cupomSalvo!.CupomProdutos.First().Cupom.Should().NotBeNull();
+        repository.UnitOfWork.Should().Be(_context);
     }
 
     [Fact]

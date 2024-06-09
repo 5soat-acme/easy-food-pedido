@@ -44,6 +44,7 @@ public class CarrinhoRepositoryTest : IDisposable
 
         // Assert
         result.Should().BeEquivalentTo(carrinho);
+        repository.UnitOfWork.Should().Be(_context);
     }
 
     [Fact]

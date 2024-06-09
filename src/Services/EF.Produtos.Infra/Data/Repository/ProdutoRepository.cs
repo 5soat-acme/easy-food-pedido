@@ -42,9 +42,4 @@ public sealed class ProdutoRepository : IProdutoRepository
     {
         _dbContext.Produtos.Remove(produto);
     }
-
-    public void Dispose()
-    {
-        _dbContext.Dispose();
-    }
 }

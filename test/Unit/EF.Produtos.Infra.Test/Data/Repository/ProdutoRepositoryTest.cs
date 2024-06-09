@@ -44,6 +44,7 @@ public class ProdutoRepositoryTest : IDisposable
         var produtoSalvo = await _context.Produtos.FindAsync(produto.Id);
         produtoSalvo.Should().NotBeNull();
         produtoSalvo.Should().BeEquivalentTo(produto);
+        repository.UnitOfWork.Should().Be(_context);
     }
 
     [Fact]

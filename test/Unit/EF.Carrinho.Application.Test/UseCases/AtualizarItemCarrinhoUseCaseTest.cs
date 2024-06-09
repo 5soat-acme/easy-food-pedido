@@ -129,7 +129,7 @@ public class AtualizarItemCarrinhoUseCaseTest
     }
 
     [Fact]
-    public async Task DeveGerarExcecao_uandoCommitGerarErro()
+    public async Task DeveGerarExcecao_QuandoCommitGerarErro()
     {
         // Arrange
         var carrinhoSessao = _fixture.Create<CarrinhoSessaoDto>();

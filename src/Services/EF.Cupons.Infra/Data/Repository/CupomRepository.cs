@@ -76,9 +76,4 @@ public sealed class CupomRepository : ICupomRepository
     {
         _dbContext.CupomProdutos.RemoveRange(produtos);
     }
-
-    public void Dispose()
-    {
-        _dbContext.Dispose();
-    }
 }

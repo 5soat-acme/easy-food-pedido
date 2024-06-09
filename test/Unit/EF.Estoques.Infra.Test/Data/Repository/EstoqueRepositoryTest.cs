@@ -62,6 +62,8 @@ public class EstoqueRepositoryTest : IDisposable
         estoqueSalvo.Should().NotBeNull();
         estoqueSalvo.Should().BeEquivalentTo(estoque);
         estoqueSalvo!.Movimentacoes.Should().HaveCount(5);
+        estoqueSalvo!.Movimentacoes.First().Estoque.Should().NotBeNull();
+        repository.UnitOfWork.Should().Be(_context);
     }
 
     [Fact]

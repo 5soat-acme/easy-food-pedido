@@ -56,11 +56,7 @@ public class PreparoPedidoIniciadoConsumer : BackgroundService
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Log de erros ou manipulação de exceções
-            }
+            } catch (Exception ex) { }
         }
 
     }
