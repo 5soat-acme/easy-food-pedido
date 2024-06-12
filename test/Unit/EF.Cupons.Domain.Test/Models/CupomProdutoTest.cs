@@ -8,8 +8,7 @@ namespace EF.Cupons.Domain.Test.Models;
 [Collection(nameof(CupomCollection))]
 public class CupomProdutoTest(CupomFixture fixture)
 {
-    [Fact(DisplayName = "Novo CupomProduto válido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveCriarUmaInstanciaDeCupomProduto()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class CupomProdutoTest(CupomFixture fixture)
         movimentacao.Should().BeOfType<CupomProduto>();
     }
 
-    [Fact(DisplayName = "Novo CupomProduto inválido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomProdutoInvalido()
     {
         // Arrange - Act
@@ -30,8 +28,7 @@ public class CupomProdutoTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Um CupomProduto deve estar associado a um Cupom");
     }
 
-    [Fact(DisplayName = "Novo CupomProduto com produto Id inválido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomProdutoComProdutoIdInvalido()
     {
         // Arrange - Act

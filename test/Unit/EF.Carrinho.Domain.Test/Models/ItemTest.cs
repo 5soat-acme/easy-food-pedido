@@ -9,8 +9,7 @@ namespace EF.Carrinho.Domain.Test.Models
     [Collection(nameof(CarrinhoCollection))]
     public class ItemTest(CarrinhoClienteFixture fixture)
     {
-        [Fact(DisplayName = "Criar item válido")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveCriarItemValido()
         {
             // Arrange
@@ -21,8 +20,7 @@ namespace EF.Carrinho.Domain.Test.Models
             item.Id.Should().NotBeEmpty();
         }
 
-        [Fact(DisplayName = "Criar item com produto inválido")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveGerarExcecao_QuandoCriarItemComProdutoInvalido()
         {
             // Arrange
@@ -32,8 +30,7 @@ namespace EF.Carrinho.Domain.Test.Models
             act.Should().Throw<DomainException>().WithMessage("Produto inválido");
         }
 
-        [Theory(DisplayName = "Criar item com valor unitário inválido")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Theory]
         [InlineData(-1)]
         [InlineData(0)]
         public void DeveGerarExcecao_QuandoCriarItemComValorUnitarioInvalido(decimal valorUnitario)
@@ -45,8 +42,7 @@ namespace EF.Carrinho.Domain.Test.Models
             act.Should().Throw<DomainException>().WithMessage("Valor unitário inválido");
         }
 
-        [Fact(DisplayName = "Associar carrinho")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveAssociarCarrinho()
         {
             // Arrange
@@ -61,8 +57,7 @@ namespace EF.Carrinho.Domain.Test.Models
             item.CarrinhoId.Should().Be(carrinhoId);
         }
 
-        [Fact(DisplayName = "Associar carrinho inválido")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveGerarExcecao_QuandoAssociarCarrinhoInvalido()
         {
             // Arrange
@@ -75,8 +70,7 @@ namespace EF.Carrinho.Domain.Test.Models
             act.Should().Throw<DomainException>().WithMessage("Id do carrinho inválido");
         }
 
-        [Fact(DisplayName = "Atualizar quantidade")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveAtualizarQuantidade()
         {
             // Arrange
@@ -90,8 +84,7 @@ namespace EF.Carrinho.Domain.Test.Models
             item.Quantidade.Should().Be(qtd);
         }
 
-        [Fact(DisplayName = "Atualizar quantidade inválida")]
-        [Trait("Category", "Domain - Carrinho")]
+        [Fact]
         public void DeveGerarExcecao_QuandoAtualizarQuantidadeInvalida()
         {
             // Arrange

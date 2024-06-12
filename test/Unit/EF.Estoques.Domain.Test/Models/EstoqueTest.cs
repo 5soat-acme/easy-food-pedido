@@ -8,8 +8,7 @@ namespace EF.Estoques.Domain.Test.Models;
 [Collection(nameof(EstoqueCollection))]
 public class EstoqueTest(EstoqueFixture fixture)
 {
-    [Fact(DisplayName = "Novo estoque válido")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveCriarUmaInstanciaDeEstoque()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         estoque.Should().BeOfType<Estoque>();
     }
 
-    [Fact(DisplayName = "Novo estoque inválido")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarEstoqueInvalido()
     {
         // Arrange - Act
@@ -30,8 +28,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Produto inválido");
     }
 
-    [Fact(DisplayName = "Novo estoque com quantidade inválida")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarEstoqueComQuantidadeInvalida()
     {
         // Arrange - Act
@@ -41,8 +38,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Quantidade inválida");
     }
 
-    [Fact(DisplayName = "Calcular nova quantidade do estoque após entrada")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveCalcularQuantidadeAposEntrada()
     {
         // Arrange
@@ -58,8 +54,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         estoque.Quantidade.Should().Be(qtdEstoque);
     }
 
-    [Fact(DisplayName = "Calcular nova quantidade do estoque após saída")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveCalcularQuantidadeAposSaida()
     {
         // Arrange
@@ -75,8 +70,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         estoque.Quantidade.Should().Be(qtdEstoque);
     }
 
-    [Fact(DisplayName = "Atualizar quantidade inválida, estoque insuficiente")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAtualizarQuantidadeInvalidaPorMotivosDeEstoqueInsuficiente()
     {
         // Arrange
@@ -89,8 +83,7 @@ public class EstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Produto não possui estoque suficiente");
     }
 
-    [Fact(DisplayName = "Adicionar movimentação ao estoque")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveAdicionarMovimentacaoEstoque()
     {
         // Arrange

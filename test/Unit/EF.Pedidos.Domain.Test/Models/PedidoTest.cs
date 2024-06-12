@@ -9,8 +9,7 @@ namespace EF.Pedidos.Domain.Test.Models;
 [Collection(nameof(PedidoCollection))]
 public class PedidoTest(PedidoFixture fixture)
 {
-    [Fact(DisplayName = "Criar pedido associado ao cliente")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveCriarPedidoAssociadoAoCliente()
     {
         // Arrange
@@ -21,8 +20,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.ClienteId.Should().NotBeEmpty();
     }
 
-    [Fact(DisplayName = "Associar cliente inválido ao pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAssociarClienteInvalidoAoPedido()
     {
         // Arrange
@@ -32,8 +30,7 @@ public class PedidoTest(PedidoFixture fixture)
         Assert.Throws<DomainException>(() => pedido.AssociarCliente(Guid.Empty));
     }
 
-    [Fact(DisplayName = "Associar cupom ao pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAssociarCupomAoPedido()
     {
         // Arrange
@@ -46,8 +43,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.CupomId.Should().NotBeEmpty();
     }
 
-    [Fact(DisplayName = "Associar CPF ao pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAssociarCPFAoPedido()
     {
         // Arrange
@@ -61,8 +57,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.Cpf.Should().Be(cpf);
     }
 
-    [Fact(DisplayName = "Atualizar Status do pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAtualizarStatusDoPedido()
     {
         // Arrange
@@ -76,8 +71,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.Status.Should().Be(status);
     }
 
-    [Fact(DisplayName = "Adicionar item ao pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAdicionarItemAoPedido()
     {
         // Arrange
@@ -91,8 +85,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.Itens.Should().Contain(item);
     }
 
-    [Fact(DisplayName = "Atualizar valor total do pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAtualizarValorTotal()
     {
         // Arrange
@@ -113,8 +106,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.ValorTotal.Should().Be(pedido.ValorTotal);
     }
 
-    [Fact(DisplayName = "Aplicar desconto no pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveAplicarDesconto()
     {
         // Arrange
@@ -136,8 +128,7 @@ public class PedidoTest(PedidoFixture fixture)
         pedido.ValorTotal.Should().Be(valorTotal);
     }
 
-    [Fact(DisplayName = "Aplicar desconto inválido no pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAplicarDescontoInvalido()
     {
         // Arrange
@@ -149,8 +140,7 @@ public class PedidoTest(PedidoFixture fixture)
         Assert.Throws<DomainException>(() => pedido.AplicarDescontoItem(item.Id, 0));
     }
 
-    [Fact(DisplayName = "Confirmar pagamento do pedido")]
-    [Trait("Category", "Domain - Pedido")]
+    [Fact]
     public void DeveConfirmarPagamento()
     {
         // Arrange

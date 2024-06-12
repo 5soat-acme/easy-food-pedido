@@ -8,8 +8,7 @@ namespace EF.Cupons.Domain.Test.Models;
 [Collection(nameof(CupomCollection))]
 public class CupomTest(CupomFixture fixture)
 {
-    [Fact(DisplayName = "Novo cupom válido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveCriarUmaInstanciaDeCupom()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class CupomTest(CupomFixture fixture)
         cupom.Should().BeOfType<Cupom>();
     }
 
-    [Fact(DisplayName = "Inativar cupom")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveInativarCupom()
     {
         // Arrange
@@ -33,8 +31,7 @@ public class CupomTest(CupomFixture fixture)
         cupom.Status.Should().Be(CupomStatus.Inativo);
     }
 
-    [Fact(DisplayName = "Novo cupom com data início inválida")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomComDataInicioInvalida()
     {
         // Arrange - Act
@@ -44,8 +41,7 @@ public class CupomTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("DataInicio não pode ser inferior a data atual");
     }
 
-    [Fact(DisplayName = "Novo cupom com data fim inválida")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomComDataFimInvalida()
     {
         // Arrange - Act
@@ -55,8 +51,7 @@ public class CupomTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("DataFim não pode ser inferior a DataInicio");
     }
 
-    [Fact(DisplayName = "Novo cupom com código inválido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomComCodigoInvalido()
     {
         // Arrange - Act
@@ -66,8 +61,7 @@ public class CupomTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("CodigoCupom inválido");
     }
 
-    [Fact(DisplayName = "Novo cupom com porcentagem de desconto inválida")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomComPorcentagemDescontoInvalida()
     {
         // Arrange - Act
@@ -77,8 +71,7 @@ public class CupomTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("PorcentagemDesconto inválida");
     }
 
-    [Fact(DisplayName = "Novo cupom com status inválido")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarCupomComStatusInvalido()
     {
         // Arrange - Act
@@ -88,8 +81,7 @@ public class CupomTest(CupomFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Status inválido");
     }
 
-    [Fact(DisplayName = "Adicionar produto ao cupom")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveAdicionarProdutoAoCupom()
     {
         // Arrange
@@ -103,8 +95,7 @@ public class CupomTest(CupomFixture fixture)
         cupom.CupomProdutos.Should().Contain(cupomProd);
     }
 
-    [Fact(DisplayName = "Alterar datas")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveAlterarAlterarDatasDoCupom()
     {
         // Arrange
@@ -120,8 +111,7 @@ public class CupomTest(CupomFixture fixture)
         cupom.DataFim.Should().Be(dataFim);
     }
 
-    [Fact(DisplayName = "Alterar código do cupom")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveAlterarAlterarCodigoCupom()
     {
         // Arrange
@@ -135,8 +125,7 @@ public class CupomTest(CupomFixture fixture)
         cupom.CodigoCupom.Should().Be(codigoCupom);
     }
 
-    [Fact(DisplayName = "Alterar porcentagem desconto do cupom")]
-    [Trait("Category", "Domain - Cupom")]
+    [Fact]
     public void DeveAlterarPorcentagemDesconto()
     {
         // Arrange

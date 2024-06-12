@@ -8,8 +8,7 @@ namespace EF.Produtos.Domain.Test.Models;
 [Collection(nameof(ProdutoCollection))]
 public class ProdutoTest(ProdutoFixture fixture)
 {
-    [Fact(DisplayName = "Novo produto válido")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveCriarUmaInstanciaDeProduto()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         produto.Should().BeOfType<Produto>();
     }
 
-    [Fact(DisplayName = "Novo produto com nome inválido")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarProdutoComNomeInvalido()
     {
         // Arrange - Act
@@ -30,8 +28,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Nome inválido");
     }
 
-    [Fact(DisplayName = "Novo produto com valor unitário inválido")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarProdutoComValorUnitarioInvalido()
     {
         // Arrange - Act
@@ -41,8 +38,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Valor unitário inválido");
     }
 
-    [Fact(DisplayName = "Novo produto com categoria inválida")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarProdutoComCategoriaInvalida()
     {
         // Arrange - Act
@@ -52,8 +48,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Categoria inválida");
     }
 
-    [Fact(DisplayName = "Novo produto com descricao inválida")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarProdutoComDescricaoInvalida()
     {
         // Arrange - Act
@@ -63,8 +58,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Descrição inválida");
     }
 
-    [Fact(DisplayName = "Novo produto com tempo de preparo inválido")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarProdutoComTempoDePreparoInvalido()
     {
         // Arrange - Act
@@ -74,8 +68,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("TempoPreparoEstimado inválido");
     }
 
-    [Fact(DisplayName = "Ativar produto")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveAtivarProduto()
     {
         // Arrange
@@ -88,8 +81,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         produto.Ativo.Should().BeTrue();
     }
 
-    [Fact(DisplayName = "Desativar produto")]
-    [Trait("Category", "Domain - Produto")]
+    [Fact]
     public void DeveDesativarProduto()
     {
         // Arrange
@@ -102,8 +94,7 @@ public class ProdutoTest(ProdutoFixture fixture)
         produto.Ativo.Should().BeFalse();
     }
 
-    [Theory(DisplayName = "Alterar produto")]
-    [Trait("Category", "Domain - Produto")]
+    [Theory]
     [InlineData(true)]
     [InlineData(false)]
     public void DeveAlterarProduto(bool ativo)

@@ -7,8 +7,7 @@ namespace EF.Carrinho.Domain.Test.Models;
 [Collection(nameof(CarrinhoCollection))]
 public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
 {
-    [Fact(DisplayName = "Criar carrinho associado ao cliente")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveCriarCarrinhoAssociadoAoCliente()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.ClienteId.Should().NotBeEmpty();
     }
 
-    [Fact(DisplayName = "Associar cliente inválido ao carrinho")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAssociarClienteInvalidoAoCarrinho()
     {
         // Arrange
@@ -30,8 +28,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         Assert.Throws<DomainException>(() => carrinhoCliente.AssociarCliente(Guid.Empty));
     }
 
-    [Fact(DisplayName = "Associar carrinho válido")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveAssociarCarrinho()
     {
         // Arrange
@@ -44,8 +41,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.Id.Should().NotBeEmpty();
     }
 
-    [Fact(DisplayName = "Associar carrinho existente inválido")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAssociarCarrinhoInvalido()
     {
         // Arrange
@@ -55,8 +51,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         Assert.Throws<DomainException>(() => carrinhoCliente.AssociarCarrinho(Guid.Empty));
     }
 
-    [Fact(DisplayName = "Adicionar item ao carrinho")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveAdicionarItemAoCarrinho()
     {
         // Arrange
@@ -70,8 +65,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.Itens.Should().Contain(item);
     }
 
-    [Fact(DisplayName = "Atualizar quantidade item")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveAtualizarQuantidade()
     {
         // Arrange
@@ -90,8 +84,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.Itens.FirstOrDefault(x => x.ProdutoId == item.ProdutoId)!.Quantidade.Should().Be(qtdFinal);
     }
 
-    [Fact(DisplayName = "Atualizar quantidade de item inválido")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveGerarExcecao_QuandoAtualizarQuantidadeDeitemInvalido()
     {
         // Arrange
@@ -105,8 +98,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Item não encontrado");
     }
 
-    [Fact(DisplayName = "Remover item do carrinho")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveRemoverItemDoCarrinho()
     {
         // Arrange
@@ -122,8 +114,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.ValorTotal.Should().Be(0);
     }
 
-    [Fact(DisplayName = "Atualizar valor total do carrinho")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveAtualizarValorTotalDoCarrinho()
     {
         // Arrange
@@ -143,8 +134,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         carrinhoCliente.ValorTotal.Should().Be(valorTotal);
     }
 
-    [Fact(DisplayName = "Checar se produtdo existe")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveChecarSeProdutoExiste()
     {
         // Arrange
@@ -160,8 +150,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         Assert.True(existe);
     }
 
-    [Fact(DisplayName = "Obter item por ID do produto")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveObterItemPorProdutoId()
     {
         // Arrange
@@ -177,8 +166,7 @@ public class CarrinhoClienteTest(CarrinhoClienteFixture fixture)
         item.Should().Be(itemObtido);
     }
 
-    [Fact(DisplayName = "Obter item por ID")]
-    [Trait("Category", "Domain - Carrinho")]
+    [Fact]
     public void DeveObterItemPoId()
     {
         // Arrange

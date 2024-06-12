@@ -8,8 +8,7 @@ namespace EF.Estoques.Domain.Test.Models;
 [Collection(nameof(EstoqueCollection))]
 public class MovimentacaoEstoqueTest(EstoqueFixture fixture)
 {
-    [Fact(DisplayName = "Nova MovimentacaoEstoque válida")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveCriarUmaInstanciaDeMovimentacaoEstoque()
     {
         // Arrange
@@ -19,8 +18,7 @@ public class MovimentacaoEstoqueTest(EstoqueFixture fixture)
         movimentacao.Should().BeOfType<MovimentacaoEstoque>();
     }
 
-    [Fact(DisplayName = "Nova MovimentacaoEstoque inválida")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarMovimentacaoEstoqueInvalida()
     {
         // Arrange - Act
@@ -30,8 +28,7 @@ public class MovimentacaoEstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("Uma movimentação deve estar associada a um estoque");
     }
 
-    [Fact(DisplayName = "Nova MovimentacaoEstoque com TipoMovimentacaoEstoque inválido")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarMovimentacaoComTipoMovimentacaoInvalido()
     {
         // Arrange - Act
@@ -41,8 +38,7 @@ public class MovimentacaoEstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("TipoMovimentacao inválido");
     }
 
-    [Fact(DisplayName = "Nova MovimentacaoEstoque com OrigemMovimentacaoEstoque inválida")]
-    [Trait("Category", "Domain - Estoque")]
+    [Fact]
     public void DeveGerarExcecao_QuandoCriarMovimentacaoComOrigemMovimentacaoInvalida()
     {
         // Arrange - Act
@@ -53,8 +49,7 @@ public class MovimentacaoEstoqueTest(EstoqueFixture fixture)
         act.Should().Throw<DomainException>().WithMessage("OrigemMovimentacao inválida");
     }
 
-    [Theory(DisplayName = "Nova MovimentacaoEstoque com OrigemMovimentacaoEstoque incompatível com TipoMovimentacao")]
-    [Trait("Category", "Domain - Estoque")]
+    [Theory]
     [InlineData(TipoMovimentacaoEstoque.Entrada, OrigemMovimentacaoEstoque.Venda)]
     [InlineData(TipoMovimentacaoEstoque.Saida, OrigemMovimentacaoEstoque.Compra)]
     public void DeveGerarExcecao_QuandoCriarMovimentacaoComOrigemMovimentacaoIncompativelComTipoMovimentacao(
