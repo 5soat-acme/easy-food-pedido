@@ -121,8 +121,6 @@ public class CarrinhoController : CustomControllerBase
     [HttpDelete("{itemId}")]
     public async Task<IActionResult> RemoverItem(Guid itemId)
     {
-        if (!ModelState.IsValid) return Respond(ModelState);
-
         await _removerItemCarrinhoUseCase.RemoverItemCarrinho(itemId, _carrinhoSessao);
         return Respond();
     }

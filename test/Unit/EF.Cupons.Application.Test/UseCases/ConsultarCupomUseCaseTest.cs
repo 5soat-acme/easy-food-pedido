@@ -29,6 +29,7 @@ public class ConsultarCupomUseCaseTest
     {
         // Arrange
         var cupom = _fixture.Create<Cupom>();
+        cupom.AdicionarProduto(_fixture.Create<CupomProduto>());
         var cupomEsperado = new CupomDto()
         {
             Id = cupom.Id,
@@ -36,6 +37,12 @@ public class ConsultarCupomUseCaseTest
             DataFim = cupom.DataFim,
             PorcentagemDesconto = cupom.PorcentagemDesconto,
             Produtos = new List<CupomProdutoDto>()
+            {
+                new CupomProdutoDto()
+                {
+                    ProdutoId = cupom.CupomProdutos.FirstOrDefault()!.ProdutoId
+                }
+            }
         };
 
         var cupomRepositoryMock = _fixture.Freeze<Mock<ICupomRepository>>();
@@ -49,5 +56,23 @@ public class ConsultarCupomUseCaseTest
         // Assert
         cupomRepositoryMock.Verify(x => x.BuscarCupomVigente(cupom.CodigoCupom, It.IsAny<CancellationToken>()), Times.Once);
         resultado.Should().BeEquivalentTo(cupomEsperado);
+    }
+
+    [Fact]
+    public async Task DeveRetornarNull_QuandoConsultarCupomInexistente()
+    {
+        // Arrange
+        var codigoCupom = _fixture.Create<string>();
+        var cupomRepositoryMock = _fixture.Freeze<Mock<ICupomRepository>>();
+        cupomRepositoryMock.Setup(x => x.BuscarCupomVigente(codigoCupom, It.IsAny<CancellationToken>())).ReturnsAsync((Cupom?) null);
+
+        var useCase = _fixture.Create<IConsultarCupomUseCase>();
+
+        // Act
+        var resultado = await useCase.ObterCupom(codigoCupom, It.IsAny<CancellationToken>());
+
+        // Assert
+        cupomRepositoryMock.Verify(x => x.BuscarCupomVigente(codigoCupom, It.IsAny<CancellationToken>()), Times.Once);
+        resultado.Should().BeNull();
     }
 }

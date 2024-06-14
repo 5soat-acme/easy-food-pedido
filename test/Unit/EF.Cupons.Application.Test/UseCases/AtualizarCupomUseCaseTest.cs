@@ -71,6 +71,32 @@ public class AtualizarCupomUseCaseTest
     }
 
     [Fact]
+    public async Task DeveGerarExcecao_QuandoAtualizarCupomEmVigencia()
+    {
+        // Arrange
+        var cupomDto = _fixture.Create<AtualizarCupomDto>();
+        var cupom = new Cupom(dataInicio: DateTime.Now,
+                        dataFim: DateTime.Now.AddDays(Math.Abs(_fixture.Create<int>()) + 1),
+                        codigoCupom: _fixture.Create<string>().PadRight(4, 'a'),
+                        porcentagemDesconto: 0.15M,
+                        status: _fixture.Create<CupomStatus>());
+
+        var cupomRepositoryMock = _fixture.Freeze<Mock<ICupomRepository>>();
+        cupomRepositoryMock.Setup(x => x.Buscar(cupomDto.CupomId, It.IsAny<CancellationToken>())).ReturnsAsync(cupom);
+
+        var useCase = _fixture.Create<IAtualizarCupomUseCase>();
+
+        // Act
+        var resultado = await useCase.Handle(cupomDto);
+
+        // Assert
+        cupomRepositoryMock.Verify(x => x.Atualizar(It.IsAny<Cupom>(), It.IsAny<CancellationToken>()), Times.Never);
+        cupomRepositoryMock.Verify(x => x.UnitOfWork.Commit(), Times.Never);
+        resultado.IsValid.Should().BeFalse();
+        resultado.ValidationResult.IsValid.Should().BeFalse();
+    }
+
+    [Fact]
     public async Task DeveGerarExcecao_QuandoCommitGerarErro()
     {
         // Arrange

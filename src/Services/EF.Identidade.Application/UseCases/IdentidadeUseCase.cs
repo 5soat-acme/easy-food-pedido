@@ -26,20 +26,18 @@ public class IdentidadeUseCase : IIdentidadeUseCase
         return AcessarComUsuarioNaoRegistrado();
     }
 
-    private OperationResult<RespostaTokenAcesso> AcessarComUsuarioNaoRegistrado(string? cpf = null)
+    private OperationResult<RespostaTokenAcesso> AcessarComUsuarioNaoRegistrado()
     {
-        var result = GerarTokenUsuarioNaoIdentificado(cpf);
+        var result = GerarTokenUsuarioNaoIdentificado();
         return OperationResult<RespostaTokenAcesso>.Success(result);
     }
 
-    private RespostaTokenAcesso GerarTokenUsuarioNaoIdentificado(string? cpf = null)
+    private RespostaTokenAcesso GerarTokenUsuarioNaoIdentificado()
     {
         var tokenClaims = ObterTokenClaims();
 
         tokenClaims.AddClaim(new Claim("user_type", "anonymous"));
         tokenClaims.AddClaim(new Claim("session_id", Guid.NewGuid().ToString()));
-
-        if (!string.IsNullOrEmpty(cpf)) tokenClaims.AddClaim(new Claim("user_cpf", cpf));
 
         var encodedToken = CodificarToken(tokenClaims);
         return ObterRespostaToken(encodedToken, tokenClaims.Claims);

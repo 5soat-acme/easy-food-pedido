@@ -22,7 +22,7 @@ public abstract class CupomCommonUseCase : CommonUseCase
             return false;
         }
 
-        if (validarVigencia && cupom.DataInicio <= DateTime.Now.Date)
+        if (validarVigencia && cupom.DataInicio.Date <= DateTime.Now.Date)
         {
             AddError("Não é possível alterar um cupom em vigência");
             return false;

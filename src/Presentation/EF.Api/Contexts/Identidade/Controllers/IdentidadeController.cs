@@ -22,8 +22,6 @@ public class IdentidadeController(IIdentidadeUseCase useCase) : CustomController
     [HttpGet("acessar")]
     public async Task<IActionResult> Acessar()
     {
-        if (!ModelState.IsValid) return Respond(ModelState);
-
         var result = await useCase.AcessarSistema();
 
         if (!result.IsValid) AddErrors(result.GetErrorMessages());

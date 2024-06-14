@@ -35,8 +35,8 @@ public class ProdutoController : CustomControllerBase
     [HttpGet]
     public async Task<IActionResult> Obter([FromQuery] ProdutoCategoria? categoria)
     {
-        var pedidos = await _consultarProdutoUseCase.Buscar(categoria);
-        return pedidos is null ? NotFound() : Respond(pedidos);
+        var produtos = await _consultarProdutoUseCase.Buscar(categoria);
+        return produtos is null ? NotFound() : Respond(produtos);
     }
 
     /// <summary>
@@ -63,8 +63,6 @@ public class ProdutoController : CustomControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Atualizar(Guid id, AtualizarProdutoDto produto)
     {
-        if (!ModelState.IsValid) return Respond(ModelState);
-
         produto.ProdutoId = id;
 
         var result = await _atualizarProdutoUseCase.Handle(produto);
@@ -81,7 +79,6 @@ public class ProdutoController : CustomControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remover(Guid id)
     {
-        if (!ModelState.IsValid) return Respond(ModelState);
         var result = await _removerProdutoUseCase.Handle(id);
 
         return Respond(result);
