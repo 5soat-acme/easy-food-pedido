@@ -16,14 +16,11 @@ public class SchemaFilterConfig : ISchemaFilter
 
     public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {
-        // if (context.Type == typeToIgnore)
-        // {
         var propertyNameToIgnoreLower = propertyNameToIgnore.ToLowerInvariant();
 
         var propertyToRemove = schema.Properties.Keys
             .FirstOrDefault(name => name.ToLowerInvariant() == propertyNameToIgnoreLower);
 
         if (propertyToRemove != null) schema.Properties.Remove(propertyToRemove);
-        // }
     }
 }

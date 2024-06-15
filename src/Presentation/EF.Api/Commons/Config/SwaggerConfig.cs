@@ -14,12 +14,6 @@ public static class SwaggerConfig
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
 
-            // c.AddServer(new OpenApiServer
-            // {
-            //     Url = "http://localhost:8080",
-            //     Description = "easy-food"
-            // });
-
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Easy Food", Version = "v1" });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

@@ -127,16 +127,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Pedidos.Application.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEF202E8-D25B-4CE5-AA3C-036A5A672966}"
 	ProjectSection(SolutionItems) = preProject
-		coverlet.runsettings = coverlet.runsettings
+		sonar-project.properties = sonar-project.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presenter", "Presenter", "{2D24EA8A-71CC-412D-BC21-0FA9C37D2DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Api.Test", "test\Unit\EF.Api.Test\EF.Api.Test.csproj", "{55BCA5F9-AD62-4C49-882D-4A0D55E8BFAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Api.Test", "test\Unit\EF.Api.Test\EF.Api.Test.csproj", "{55BCA5F9-AD62-4C49-882D-4A0D55E8BFAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identidade", "Identidade", "{DAED6399-A9EE-4E8A-80FE-A57E0F63193A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Identidade.Application.Test", "test\Unit\EF.Identidade.Application.Test\EF.Identidade.Application.Test.csproj", "{CC49BA5F-CEB6-410B-BFBC-3E639EBBF571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Identidade.Application.Test", "test\Unit\EF.Identidade.Application.Test\EF.Identidade.Application.Test.csproj", "{CC49BA5F-CEB6-410B-BFBC-3E639EBBF571}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
