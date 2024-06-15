@@ -55,7 +55,6 @@ jobs:
           dotnet tool install --global dotnet-sonarscanner
           export PATH="$PATH:/home/runner/.dotnet/tools"
           dotnet sonarscanner begin /k:"5soat-acme_easy-food-pedido" /o:"5soat-acme" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:project.settings=sonar-project.properties
-          dotnet sonarscanner begin /d:project.settings=sonar-project.properties /d:sonar.login=${{ secrets.SONAR_TOKEN }}
           dotnet build
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
