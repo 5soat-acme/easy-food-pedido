@@ -90,7 +90,7 @@ public class PedidoControllerTest
     }
 
     [Fact]
-    public async Task DeveRetornarBadRequestOk_QuandoFalharCheckoutPedido()
+    public async Task DeveRetornarBadRequest_QuandoFalharCheckoutPedido()
     {
         // Arrange
         var criarPedidoDto = _fixture.Create<CriarPedidoDto>();
