@@ -125,11 +125,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Estoques.Application.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Pedidos.Application.Test", "test\Unit\EF.Pedidos.Application.Test\EF.Pedidos.Application.Test.csproj", "{E68CF96F-2B09-4F53-98FB-04B0E2D5521F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEF202E8-D25B-4CE5-AA3C-036A5A672966}"
-	ProjectSection(SolutionItems) = preProject
-		sonar-project.properties = sonar-project.properties
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presenter", "Presenter", "{2D24EA8A-71CC-412D-BC21-0FA9C37D2DFB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF.Api.Test", "test\Unit\EF.Api.Test\EF.Api.Test.csproj", "{55BCA5F9-AD62-4C49-882D-4A0D55E8BFAF}"
