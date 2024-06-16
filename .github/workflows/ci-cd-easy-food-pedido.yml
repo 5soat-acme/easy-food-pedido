@@ -16,10 +16,10 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESSKEY: ${{ SECRETS.AWS_ACCESS_KEY_ID }}
-      AWS_SECRETKEY: ${{ SECRETS.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSIONTOKEN: ${{ SECRETS.AWS_SESSION_TOKEN }}
-      AWS_REGION: "us-east-1"
+      AWS_ACCESSKEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRETKEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSIONTOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -71,7 +71,7 @@ jobs:
 
     - name: Login to DockerHub
       if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-      run: docker login -u 5soatacme -p ${{ SECRETS.DOCKERHUB_TOKEN }}
+      run: docker login -u 5soatacme -p ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Push image to DockerHub
       if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
@@ -88,12 +88,12 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        AWS-ACCESS-KEY-ID: ${{ SECRETS.AWS_ACCESS_KEY_ID }}
-        AWS-SECRET-ACCESS-KEY: ${{ SECRETS.AWS_SECRET_ACCESS_KEY }}
-        AWS-SESSION-TOKEN: ${{ SECRETS.AWS_SESSION_TOKEN }}
-        AWS-REGION: "us-east-1"
+        AWS-ACCESS-KEY-ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS-SECRET-ACCESS-KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS-SESSION-TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        AWS-REGION: ${{ secrets.AWS_REGION }}
 
     - name: Deploy to EKS
       run: |
-        aws eks update-kubeconfig --region us-east-1 --name easy-food
+        aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name easy-food
         kubectl rollout restart deployment easy-food-pedido-api
