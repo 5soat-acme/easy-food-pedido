@@ -20,3 +20,9 @@ Microsserviço de **Pedido** referente ao projeto **[Easy Food](https://github.c
     - Executar testes com cobertura de código e integrar as informações com SonarCloud.
     - Criar a imagem da API e publicar no **[Docker Hub](https://hub.docker.com/r/5soatacme/easy-food-pedido)**.
     - Executar ```rollout restart``` no deployment do cluster EKS criado pelo repositório **[easy-food-infra](https://github.com/5soat-acme/easy-food-infra)**.
+
+### SonarCloud
+Para acessar o projeto no SonarCloud, [clique aqui](https://sonarcloud.io/summary/overall?id=5soat-acme_easy-food-pedido)
+
+#### Imagem da evidência da cobertura de testes
+![sonarcloud.png](docs/img/sonarcloud.png)
