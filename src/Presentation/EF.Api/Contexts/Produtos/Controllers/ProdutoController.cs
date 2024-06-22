@@ -36,7 +36,7 @@ public class ProdutoController : CustomControllerBase
     public async Task<IActionResult> Obter([FromQuery] ProdutoCategoria? categoria)
     {
         var produtos = await _consultarProdutoUseCase.Buscar(categoria);
-        return produtos is null ? NotFound() : Respond(produtos);
+        return produtos is null || !produtos.Any() ? NotFound() : Respond(produtos);
     }
 
     /// <summary>
