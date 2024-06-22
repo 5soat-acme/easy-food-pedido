@@ -24,18 +24,17 @@ public class PagamentoAprovadoConsumer : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using (IServiceScope scope = _serviceScopeFactory.CreateScope())
+        while (!stoppingToken.IsCancellationRequested)
         {
-            var receberPedidoUsecase = scope.ServiceProvider.GetRequiredService<IReceberPedidoUsecase>();
-
-            while (!stoppingToken.IsCancellationRequested)
+            try
             {
-                try
-                {
-                    var response = await _consumer.ReceiveMessagesAsync(QueuesNames.PagamentoAutorizado.ToString());
+                var response = await _consumer.ReceiveMessagesAsync(QueuesNames.PagamentoAutorizado.ToString());
 
-                    foreach (var message in response.receiveMessageResponse.Messages)
+                foreach (var message in response.receiveMessageResponse.Messages)
+                {
+                    using (IServiceScope scope = _serviceScopeFactory.CreateScope())
                     {
+                        var receberPedidoUsecase = scope.ServiceProvider.GetRequiredService<IReceberPedidoUsecase>();
                         var pagamentoAutorizado = JsonSerializer.Deserialize<PagamentoAutorizadoEvent>(message.Body);
 
                         if (pagamentoAutorizado != null)
@@ -55,11 +54,7 @@ public class PagamentoAprovadoConsumer : BackgroundService
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    // Log de erros ou manipulação de exceções
-                }
-            }
+            } catch (Exception ex) { }
         }
     }
 }

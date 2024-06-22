@@ -3,6 +3,7 @@ using EF.Api.Commons.Extensions;
 using EF.Api.Contexts.Carrinho.Config;
 using EF.Api.Contexts.Cupons.Config;
 using EF.Api.Contexts.Estoques.Config;
+using EF.Api.Contexts.Identidade.Config;
 using EF.Api.Contexts.Pedidos.Config;
 using EF.Api.Contexts.Produtos.Config;
 using EF.Pedidos.Application.Events.Consumers;
@@ -13,15 +14,16 @@ namespace EF.Api.Commons.Config;
 
 public static class ApiConfig
 {
-    public static IServiceCollection AddApiConfig(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApiConfig(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment env)
     {
         services.AddControllers()
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerConfig();
+        services.AddSwaggerConfig(env);
 
         services.AddEventBusConfig();
 
+        services.RegisterServicesIdentidade();
         services.RegisterServicesCarrinho(configuration);
         services.RegisterServicesCupons(configuration);
         services.RegisterServicesEstoques(configuration);

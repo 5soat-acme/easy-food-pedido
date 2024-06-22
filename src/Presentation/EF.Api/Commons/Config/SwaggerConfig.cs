@@ -1,11 +1,12 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace EF.Api.Commons.Config;
 
 public static class SwaggerConfig
 {
-    public static IServiceCollection AddSwaggerConfig(this IServiceCollection services)
+    public static IServiceCollection AddSwaggerConfig(this IServiceCollection services, IWebHostEnvironment env)
     {
         services.AddSwaggerGen(c =>
         {
@@ -13,13 +14,7 @@ public static class SwaggerConfig
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
 
-            // c.AddServer(new OpenApiServer
-            // {
-            //     Url = "http://localhost:8080",
-            //     Description = "easy-food"
-            // });
-
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Easy Food", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Easy Food - Pedido", Version = "v1" });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
@@ -44,6 +39,11 @@ public static class SwaggerConfig
                     new string[] { }
                 }
             });
+
+            if (!env.IsDevelopment())
+            {
+                c.DocumentFilter<PrefixDocumentFilter>();
+            }
         });
 
         return services;
@@ -55,5 +55,20 @@ public static class SwaggerConfig
         app.UseSwaggerUI();
 
         return app;
+    }
+}
+
+public class PrefixDocumentFilter : IDocumentFilter
+{
+    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+    {
+        var paths = new OpenApiPaths();
+
+        foreach (var path in swaggerDoc.Paths)
+        {
+            paths.Add("/pedido" + path.Key, path.Value);
+        }
+
+        swaggerDoc.Paths = paths;
     }
 }

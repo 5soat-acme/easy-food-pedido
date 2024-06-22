@@ -10,7 +10,7 @@ public interface ICupomRepository : IRepository<Cupom>
     Task<Cupom?> BuscarCupomVigente(string codigoCupom, CancellationToken cancellationToken = default);
 
     Task<IList<Cupom>> BuscarCupomVigenteEmPeriodo(string codigoCupom, DateTime dataInicio, DateTime dataFim,
-        CancellationToken cancellationToken);
+        CancellationToken cancellationToken = default);
 
     Task<Cupom> Criar(Cupom cupom, CancellationToken cancellationToken = default);
     Cupom Atualizar(Cupom cupom, CancellationToken cancellationToken = default);

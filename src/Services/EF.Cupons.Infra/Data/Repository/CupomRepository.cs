@@ -16,7 +16,7 @@ public sealed class CupomRepository : ICupomRepository
 
     public IUnitOfWork UnitOfWork => _dbContext;
 
-    public async Task<Cupom?> Buscar(Guid cupomId, CancellationToken cancellationToken)
+    public async Task<Cupom?> Buscar(Guid cupomId, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Cupons
             .Include(x => x.CupomProdutos)
@@ -25,7 +25,7 @@ public sealed class CupomRepository : ICupomRepository
     }
 
     public async Task<CupomProduto?> BuscarCupomProduto(Guid cupomId, Guid produtoId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         return await _dbContext.CupomProdutos
             .Where(x => x.CupomId == cupomId
@@ -33,7 +33,7 @@ public sealed class CupomRepository : ICupomRepository
             .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<Cupom?> BuscarCupomVigente(string codigoCupom, CancellationToken cancellationToken)
+    public async Task<Cupom?> BuscarCupomVigente(string codigoCupom, CancellationToken cancellationToken = default)
     {
         var dataAtual = DateTime.Now.ToUniversalTime();
         return await _dbContext.Cupons.Include(x => x.CupomProdutos)
@@ -55,30 +55,25 @@ public sealed class CupomRepository : ICupomRepository
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<Cupom> Criar(Cupom cupom, CancellationToken cancellationToken)
+    public async Task<Cupom> Criar(Cupom cupom, CancellationToken cancellationToken = default)
     {
         await _dbContext.Cupons.AddAsync(cupom, cancellationToken);
         return cupom;
     }
 
-    public Cupom Atualizar(Cupom cupom, CancellationToken cancellationToken)
+    public Cupom Atualizar(Cupom cupom, CancellationToken cancellationToken = default)
     {
         _dbContext.Cupons.Update(cupom);
         return cupom;
     }
 
-    public async Task InserirProdutos(IList<CupomProduto> produtos, CancellationToken cancellationToken)
+    public async Task InserirProdutos(IList<CupomProduto> produtos, CancellationToken cancellationToken = default)
     {
         await _dbContext.CupomProdutos.AddRangeAsync(produtos, cancellationToken);
     }
 
-    public void RemoverProdutos(IList<CupomProduto> produtos, CancellationToken cancellationToken)
+    public void RemoverProdutos(IList<CupomProduto> produtos, CancellationToken cancellationToken = default)
     {
         _dbContext.CupomProdutos.RemoveRange(produtos);
-    }
-
-    public void Dispose()
-    {
-        _dbContext.Dispose();
     }
 }

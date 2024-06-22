@@ -32,9 +32,4 @@ public sealed class PedidoRepository : IPedidoRepository
     {
         _context.Pedidos.Update(pedido);
     }
-
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
 }

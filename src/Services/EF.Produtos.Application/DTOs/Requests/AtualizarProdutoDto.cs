@@ -2,7 +2,7 @@
 
 namespace EF.Produtos.Application.DTOs.Requests;
 
-public record AtualizarProdutoDto
+public class AtualizarProdutoDto
 {
     public Guid ProdutoId { get; set; }
     public string Nome { get; init; }

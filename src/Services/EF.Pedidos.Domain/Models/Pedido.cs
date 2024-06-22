@@ -60,6 +60,8 @@ public class Pedido : Entity, IAggregateRoot
 
     public void AssociarCliente(Guid clienteId)
     {
+        if (clienteId == Guid.Empty) throw new DomainException("Id do cliente inválido");
+
         ClienteId = clienteId;
     }
 

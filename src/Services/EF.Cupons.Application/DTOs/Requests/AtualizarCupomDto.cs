@@ -1,6 +1,6 @@
 ﻿namespace EF.Cupons.Application.DTOs.Requests;
 
-public record AtualizarCupomDto
+public class AtualizarCupomDto
 {
     public Guid CupomId { get; set; }
     public DateTime DataInicio { get; init; }

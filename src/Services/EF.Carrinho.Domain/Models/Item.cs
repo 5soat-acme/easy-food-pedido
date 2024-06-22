@@ -4,7 +4,7 @@ namespace EF.Carrinho.Domain.Models;
 
 public class Item : Entity
 {
-    public Item()
+    private Item()
     {
     }
 

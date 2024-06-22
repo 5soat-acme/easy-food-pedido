@@ -25,7 +25,6 @@ public class PreparoPedidoFinalizadoConsumer : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
         while (!stoppingToken.IsCancellationRequested)
         {
             try
@@ -57,11 +56,7 @@ public class PreparoPedidoFinalizadoConsumer : BackgroundService
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Log de erros ou manipulação de exceções
-            }
+            } catch (Exception ex) { }
         }
     }
 }

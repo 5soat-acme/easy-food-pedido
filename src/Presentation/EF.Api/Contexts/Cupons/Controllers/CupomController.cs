@@ -65,7 +65,8 @@ public class CupomController : CustomControllerBase
             Produtos = dto.Produtos
         };
 
-        return Respond(await _criarCupomUseCase.Handle(command));
+        var teste = await _criarCupomUseCase.Handle(command);
+        return Respond(teste);
     }
 
     /// <summary>

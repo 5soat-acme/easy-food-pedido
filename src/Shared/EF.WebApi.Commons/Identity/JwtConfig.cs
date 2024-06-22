@@ -26,7 +26,7 @@ public static class JwtConfig
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(bearerOptions =>
         {
-            bearerOptions.RequireHttpsMetadata = true;
+            bearerOptions.RequireHttpsMetadata = false;
             bearerOptions.SaveToken = true;
             bearerOptions.Authority = identitySettings.Issuer;
             bearerOptions.Audience = identitySettings.ValidIn;

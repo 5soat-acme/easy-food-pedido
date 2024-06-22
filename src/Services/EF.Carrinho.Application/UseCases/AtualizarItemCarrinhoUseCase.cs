@@ -1,4 +1,3 @@
-using System.Data;
 using EF.Carrinho.Application.DTOs.Requests;
 using EF.Carrinho.Application.Gateways;
 using EF.Carrinho.Application.UseCases.Interfaces;
@@ -27,8 +26,6 @@ public class AtualizarItemCarrinhoUseCase : CarrinhoCommonUseCase, IAtualizarIte
 
         carrinho.AtualizarQuantidadeItem(itemDto.ItemId, itemDto.Quantidade);
         var item = carrinho.ObterItemPorId(itemDto.ItemId);
-
-        if (item is null) throw new NoNullAllowedException("Item não existe");
 
         if (!await ValidarEstoque(item!)) return OperationResult.Failure("Produto sem estoque");
 

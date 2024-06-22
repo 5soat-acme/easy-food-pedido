@@ -59,9 +59,4 @@ public sealed class CarrinhoRepository : ICarrinhoRepository
     {
         _context.Itens.Remove(item);
     }
-
-    public void Dispose()
-    {
-        _context?.Dispose();
-    }
 }
