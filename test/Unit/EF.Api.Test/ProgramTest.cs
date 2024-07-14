@@ -39,6 +39,7 @@ public class ProgramTest : IClassFixture<WebApplicationFactory<Program>>
 
         // Verify hosted services
         services.GetServices<IHostedService>().Any(s => s.GetType() == typeof(PagamentoAprovadoConsumer)).Should().BeTrue();
+        services.GetServices<IHostedService>().Any(s => s.GetType() == typeof(PagamentoRecusadoConsumer)).Should().BeTrue();
         services.GetServices<IHostedService>().Any(s => s.GetType() == typeof(PreparoPedidoIniciadoConsumer)).Should().BeTrue();
         services.GetServices<IHostedService>().Any(s => s.GetType() == typeof(PreparoPedidoFinalizadoConsumer)).Should().BeTrue();
         services.GetServices<IHostedService>().Any(s => s.GetType() == typeof(EntregaPedidoRealizadaConsumer)).Should().BeTrue();

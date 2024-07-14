@@ -57,7 +57,7 @@ public class MovimentacaoEstoque : Entity
     private bool ValidarOrigemMovimentacaoCompativelTipoMovimentacao(TipoMovimentacaoEstoque tipoMovimentacao,
         OrigemMovimentacaoEstoque origemMovimentacao)
     {
-        var origemEntrada = new[] { OrigemMovimentacaoEstoque.Compra };
+        var origemEntrada = new[] { OrigemMovimentacaoEstoque.Compra, OrigemMovimentacaoEstoque.Cancelamento };
         var origemSaida = new[] { OrigemMovimentacaoEstoque.Venda };
 
         return tipoMovimentacao == TipoMovimentacaoEstoque.Entrada

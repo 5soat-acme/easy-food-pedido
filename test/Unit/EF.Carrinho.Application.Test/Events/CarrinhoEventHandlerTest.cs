@@ -41,6 +41,7 @@ public class CarrinhoEventHandlerTest
             SessionId = Guid.NewGuid(),
             ClienteId = Guid.NewGuid()
         };
+        _removerCarrinhoUseCaseMock.Setup(x => x.RemoverCarrinhoPorClienteId(pedidoCriadoEvent.ClienteId.Value)).Returns(Task.CompletedTask);
 
         // Act
         await _carrinhoEventHandler.Handle(pedidoCriadoEvent);
@@ -58,6 +59,7 @@ public class CarrinhoEventHandlerTest
         {
             SessionId = Guid.NewGuid()
         };
+        _removerCarrinhoUseCaseMock.Setup(x => x.RemoverCarrinho(pedidoCriadoEvent.SessionId)).Returns(Task.CompletedTask);
 
         // Act
         await _carrinhoEventHandler.Handle(pedidoCriadoEvent);

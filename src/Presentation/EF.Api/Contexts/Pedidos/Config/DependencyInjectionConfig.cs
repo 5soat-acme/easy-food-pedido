@@ -1,6 +1,3 @@
-using EF.Core.Commons.Messages;
-using EF.Core.Commons.Messages.Integrations;
-using EF.Pedidos.Application.Events;
 using EF.Pedidos.Application.Gateways;
 using EF.Pedidos.Application.UseCases;
 using EF.Pedidos.Application.UseCases.Interfaces;
@@ -24,6 +21,7 @@ public static class DependencyInjectionConfig
         services.AddScoped<IConsultarPedidoUseCase, ConsultarPedidoUseCase>();
         services.AddScoped<ICriarPedidoUseCase, CriarPedidoUseCase>();
         services.AddScoped<IReceberPedidoUsecase, ReceberPedidoUsecase>();
+        services.AddScoped<ICancelarPedidoUseCase, CancelarPedidoUseCase>();
 
         // Application - Gateways & Gateways
         services.AddScoped<IEstoqueService, EstoqueAdapter>();

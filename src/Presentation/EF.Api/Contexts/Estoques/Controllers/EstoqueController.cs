@@ -3,10 +3,12 @@ using EF.Estoques.Application.DTOs.Requests;
 using EF.Estoques.Application.DTOs.Responses;
 using EF.Estoques.Application.UseCases.Interfaces;
 using EF.WebApi.Commons.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EF.Api.Contexts.Estoques.Controllers;
 
+[Authorize]
 [Route("api/estoques")]
 public class EstoqueController : CustomControllerBase
 {

@@ -35,6 +35,7 @@ public static class ApiConfig
         services.AddJwtConfiguration(configuration);
         services.AddMessageriaConfig(configuration);
         services.AddHostedService<PagamentoAprovadoConsumer>();
+        services.AddHostedService<PagamentoRecusadoConsumer>();
         services.AddHostedService<PreparoPedidoIniciadoConsumer>();
         services.AddHostedService<PreparoPedidoFinalizadoConsumer>();
         services.AddHostedService<EntregaPedidoRealizadaConsumer>();

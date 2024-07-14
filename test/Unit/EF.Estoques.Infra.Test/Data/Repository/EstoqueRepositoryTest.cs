@@ -47,8 +47,14 @@ public class EstoqueRepositoryTest : IDisposable
     {
         // Arrange
         var estoque = _fixture.Create<Estoque>();
-        var movEstoque = _fixture.CreateMany<MovimentacaoEstoque>(5).ToList();
-        movEstoque.ForEach(estoque.AdicionarMovimentacao);
+        var movEstoque = new MovimentacaoEstoque(
+            estoqueId: Guid.NewGuid(),
+            produtoId: Guid.NewGuid(),
+            quantidade: 10,
+            tipoMovimentacao: TipoMovimentacaoEstoque.Saida,
+            origemMovimentacao: OrigemMovimentacaoEstoque.Venda,
+            dataLancamento: DateTime.UtcNow); ;
+        estoque.AdicionarMovimentacao(movEstoque);
         var repository = _fixture.Create<IEstoqueRepository>();
 
         // Act
@@ -61,7 +67,7 @@ public class EstoqueRepositoryTest : IDisposable
         var estoqueSalvo = await _context.Estoques.FindAsync(estoque.Id);
         estoqueSalvo.Should().NotBeNull();
         estoqueSalvo.Should().BeEquivalentTo(estoque);
-        estoqueSalvo!.Movimentacoes.Should().HaveCount(5);
+        estoqueSalvo!.Movimentacoes.Should().HaveCount(1);
         estoqueSalvo!.Movimentacoes.First().Estoque.Should().NotBeNull();
         repository.UnitOfWork.Should().Be(_context);
     }
@@ -71,8 +77,14 @@ public class EstoqueRepositoryTest : IDisposable
     {
         // Arrange
         var estoque = _fixture.Create<Estoque>();
-        var movEstoque = _fixture.CreateMany<MovimentacaoEstoque>(5).ToList();
-        movEstoque.ForEach(estoque.AdicionarMovimentacao);
+        var movEstoque = new MovimentacaoEstoque(
+            estoqueId: Guid.NewGuid(),
+            produtoId: Guid.NewGuid(), 
+            quantidade: 10,
+            tipoMovimentacao: TipoMovimentacaoEstoque.Saida,
+            origemMovimentacao: OrigemMovimentacaoEstoque.Venda,
+            dataLancamento: DateTime.UtcNow);
+        estoque.AdicionarMovimentacao(movEstoque);
         var repository = _fixture.Create<IEstoqueRepository>();
         await repository.Salvar(estoque);
         await _context.Commit();
@@ -80,8 +92,14 @@ public class EstoqueRepositoryTest : IDisposable
 
         // Act
         var estoqueAtualizar = await _context.Estoques.FindAsync(estoque.Id);
-        var movEstoqueAdiciopnar = _fixture.CreateMany<MovimentacaoEstoque>(3).ToList();
-        movEstoqueAdiciopnar.ForEach(estoqueAtualizar!.AdicionarMovimentacao);
+        var movEstoqueAdicionar = new MovimentacaoEstoque(
+            estoqueId: Guid.NewGuid(),
+            produtoId: Guid.NewGuid(),
+            quantidade: 10,
+            tipoMovimentacao: TipoMovimentacaoEstoque.Saida,
+            origemMovimentacao: OrigemMovimentacaoEstoque.Venda,
+            dataLancamento: DateTime.UtcNow);
+        estoqueAtualizar!.AdicionarMovimentacao(movEstoqueAdicionar);
         estoqueAtualizar.AtualizarQuantidade(10, TipoMovimentacaoEstoque.Entrada);
         await repository.Salvar(estoqueAtualizar);
         bool commit = await _context.Commit();
@@ -92,7 +110,7 @@ public class EstoqueRepositoryTest : IDisposable
         _context.Estoques.Should().Contain(estoqueAtualizar);
         var estoqueSalvo = await _context.Estoques.Include(x => x.Movimentacoes).FirstOrDefaultAsync();
         estoqueSalvo!.Quantidade.Should().Be(estoqueAtualizar.Quantidade);
-        estoqueSalvo!.Movimentacoes.Should().HaveCount(8);
+        estoqueSalvo!.Movimentacoes.Should().HaveCount(2);
     }
 
 

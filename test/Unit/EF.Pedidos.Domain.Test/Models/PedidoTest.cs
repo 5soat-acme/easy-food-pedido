@@ -152,4 +152,17 @@ public class PedidoTest(PedidoFixture fixture)
         // Assert 
         pedido.Status.Should().Be(Status.Recebido);
     }
+
+    [Fact]
+    public void DeveCancelarPedido()
+    {
+        // Arrange
+        var pedido = fixture.GerarPedido();
+
+        // Act
+        pedido.CancelarPedido();
+
+        // Assert 
+        pedido.Status.Should().Be(Status.Cancelado);
+    }
 }

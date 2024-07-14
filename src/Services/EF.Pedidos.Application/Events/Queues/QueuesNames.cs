@@ -2,7 +2,9 @@
 
 public enum QueuesNames
 {
+    PagamentoCriado,
     PagamentoAutorizado,
+    PagamentoRecusado,
     PedidoRecebido,
     PreparoPedidoIniciado,
     PreparoPedidoFinalizado,

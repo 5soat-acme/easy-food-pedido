@@ -3,10 +3,12 @@ using EF.Cupons.Application.DTOs.Requests;
 using EF.Cupons.Application.DTOs.Responses;
 using EF.Cupons.Application.UseCases.Interfaces;
 using EF.WebApi.Commons.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EF.Api.Contexts.Cupons.Controllers;
 
+[Authorize]
 [Route("api/cupons")]
 public class CupomController : CustomControllerBase
 {

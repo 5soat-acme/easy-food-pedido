@@ -69,4 +69,9 @@ public class Pedido : Entity, IAggregateRoot
     {
         Status = Status.Recebido;
     }
+
+    public void CancelarPedido()
+    {
+        Status = Status.Cancelado;
+    }
 }

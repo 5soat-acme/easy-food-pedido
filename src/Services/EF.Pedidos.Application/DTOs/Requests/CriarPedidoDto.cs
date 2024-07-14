@@ -9,6 +9,7 @@ public class CriarPedidoDto
     [JsonIgnore] public string? ClienteCpf { get; set; }
     public string? CodigoCupom { get; set; }
     public List<ItemPedido> Itens { get; set; }
+    public string TipoPagamento { get; set; }
 
     public class ItemPedido
     {
