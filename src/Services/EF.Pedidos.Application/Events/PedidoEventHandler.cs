@@ -23,13 +23,13 @@ public class PedidoEventHandler : IEventHandler<PedidoRecebidoEvent>, IEventHand
 
     public async Task Handle(PedidoCriadoEvent notification)
     {
-        var pedidoCriadoPagamentoEvent = new PagamentoCriadoEvent()
+        var pedidoCriadoPagamentoEvent = new PedidoCriadoPagtoEvent()
         {
             AggregateId = notification.AggregateId,
             TipoPagamento = notification.Pagamento.TipoPagamento,
             ValorTotal = notification.Pagamento.ValorTotal
         };
 
-        await _producer.SendMessageAsync(QueuesNames.PagamentoCriado.ToString(), JsonSerializer.Serialize(pedidoCriadoPagamentoEvent));
+        await _producer.SendMessageAsync(QueuesNames.PedidoCriado.ToString(), JsonSerializer.Serialize(pedidoCriadoPagamentoEvent));
     }
 }

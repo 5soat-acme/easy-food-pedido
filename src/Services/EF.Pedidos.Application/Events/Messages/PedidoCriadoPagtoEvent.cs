@@ -2,7 +2,7 @@
 
 namespace EF.Pedidos.Application.Events.Messages;
 
-public class PagamentoCriadoEvent : IntegrationEvent
+public class PedidoCriadoPagtoEvent : IntegrationEvent
 {
     public string TipoPagamento { get; set; }
     public decimal ValorTotal { get; set; }

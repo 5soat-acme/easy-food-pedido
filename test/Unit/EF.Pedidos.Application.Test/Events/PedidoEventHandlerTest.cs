@@ -46,12 +46,12 @@ public class PedidoEventHandlerTest
         var pedidoCriadoEvent = _fixture.Create<PedidoCriadoEvent>();
         var pedidoCriadoEventJson = JsonSerializer.Serialize(pedidoCriadoEvent);
 
-        _producerMock.Setup(x => x.SendMessageAsync(QueuesNames.PagamentoCriado.ToString(), pedidoCriadoEventJson));
+        _producerMock.Setup(x => x.SendMessageAsync(QueuesNames.PedidoCriado.ToString(), pedidoCriadoEventJson));
 
         // Act
         await _pedidoEventHandler.Handle(pedidoCriadoEvent);
 
         // Assert
-        _producerMock.Verify(x => x.SendMessageAsync(QueuesNames.PagamentoCriado.ToString(), It.IsAny<string>()), Times.Once);
+        _producerMock.Verify(x => x.SendMessageAsync(QueuesNames.PedidoCriado.ToString(), It.IsAny<string>()), Times.Once);
     }
 }

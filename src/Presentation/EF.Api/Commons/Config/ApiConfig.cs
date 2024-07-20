@@ -23,7 +23,7 @@ public static class ApiConfig
 
         services.AddEventBusConfig();
 
-        services.RegisterServicesIdentidade();
+        services.RegisterServicesIdentidade(configuration);
         services.RegisterServicesCarrinho(configuration);
         services.RegisterServicesCupons(configuration);
         services.RegisterServicesEstoques(configuration);
