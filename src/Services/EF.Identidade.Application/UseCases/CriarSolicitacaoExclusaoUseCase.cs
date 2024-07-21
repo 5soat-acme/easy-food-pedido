@@ -19,7 +19,7 @@ public class CriarSolicitacaoExclusaoUseCase : CommonUseCase, ICriarSolicitacaoE
 
     public async Task<OperationResult<Guid>> Handle(CriarSolicitacaoExclusaoDto dto)
     {
-        if (dto.ClienteId == Guid.Empty)
+        if (dto.ClienteId == null || dto.ClienteId == Guid.Empty)
             return OperationResult<Guid>.Failure("Cliente inválido");
 
 
@@ -27,8 +27,8 @@ public class CriarSolicitacaoExclusaoUseCase : CommonUseCase, ICriarSolicitacaoE
             return OperationResult<Guid>.Failure("Solicitação já efetuada!");
 
 
-        var solicitacaoEsclusao = new SolicitacaoExclusao(dto.ClienteId!.Value, dto.Nome, new Endereco(dto.Rua, dto.Numero, dto.Complemento,
-            dto.Cidade, dto.Cidade, dto.Estado, dto.Cep), dto.NumeroTelefone);
+        var solicitacaoEsclusao = new SolicitacaoExclusao(dto.ClienteId!.Value, dto.Nome, new Endereco(dto.Rua, dto.Numero, dto.Bairro, dto.Complemento,
+            dto.Cidade, dto.Estado, dto.Cep), dto.NumeroTelefone);
         _solicitacaoExclusaoRepository.Criar(solicitacaoEsclusao);
         await PersistData(_solicitacaoExclusaoRepository.UnitOfWork);
         return OperationResult<Guid>.Success(solicitacaoEsclusao.Id);
