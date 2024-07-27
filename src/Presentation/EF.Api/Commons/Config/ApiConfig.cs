@@ -49,6 +49,12 @@ public static class ApiConfig
 
         app.UseHttpsRedirection();
 
+        app.Use(async (context, next) =>
+        {
+            context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+            await next();
+        });
+
         app.MapControllers();
 
         app.UseMiddleware<ExceptionMiddleware>();
