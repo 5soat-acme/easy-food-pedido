@@ -22,7 +22,7 @@ public class IdentidadeController(
     /// <remarks>
     ///     Este método gera um token JWT (JSON Web Token) que deve ser usado em cabeçalhos de autenticação para futuras requisições.
     /// </remarks>
-    /// <response code="200">Acessao realizado com sucesso.</response>
+    /// <response code="200">Acesso realizado com sucesso.</response>
     /// <response code="400">A solicitação está malformada e não pode ser processada.</response>
     [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RespostaTokenAcesso))]
