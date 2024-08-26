@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\Shared\EF.Core.Commons\EF.Core.Commons.csproj" />
     <ProjectReference Include="..\..\Shared\EF.Infra.Commons\EF.Infra.Commons.csproj" />
     <ProjectReference Include="..\..\Shared\EF.WebApi.Commons\EF.WebApi.Commons.csproj" />
+    <ProjectReference Include="..\EF.Identidade.Domain\EF.Identidade.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -35,6 +35,7 @@
         <ProjectReference Include="..\..\Services\EF.Carrinho.Application\EF.Carrinho.Application.csproj" />
         <ProjectReference Include="..\..\Services\EF.Carrinho.Infra\EF.Carrinho.Infra.csproj" />
         <ProjectReference Include="..\..\Services\EF.Identidade.Application\EF.Identidade.Application.csproj" />
+        <ProjectReference Include="..\..\Services\EF.Identidade.Infra\EF.Identidade.Infra.csproj" />
         <ProjectReference Include="..\..\Services\EF.Pedidos.Application\EF.Pedidos.Application.csproj" />
         <ProjectReference Include="..\..\Services\EF.Pedidos.Domain\EF.Pedidos.Domain.csproj" />
         <ProjectReference Include="..\..\Services\EF.Pedidos.Infra\EF.Pedidos.Infra.csproj" />

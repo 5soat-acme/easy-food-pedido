@@ -1,5 +1,7 @@
 ﻿using AutoFixture;
 using AutoFixture.AutoMoq;
+using EF.Infra.Commons.Messageria.AWS;
+using EF.Infra.Commons.Messageria;
 using EF.Pedidos.Application.Events.Consumers;
 using EF.Pedidos.Domain.Models;
 using EF.Pedidos.Infra.Data;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication;
 
 namespace EF.Api.BDD.Test.Support;
 
@@ -29,7 +32,9 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
         builder.ConfigureServices(async services => 
         {
             RemoveDbContext(services);
+            ConfigureAuth(services);
             RemoveHostedServices(services);
+            RemoveProducers(services);
             AddDbContextInMemory(services);
             await CreateDatabases(services);
         });        
@@ -49,11 +54,22 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
         }
     }
 
+    private void ConfigureAuth(IServiceCollection services)
+    {
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = "Test";
+            options.DefaultChallengeScheme = "Test";
+        })
+            .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", options => { });
+    }
+
     private void RemoveHostedServices(IServiceCollection services)
     {
         var hostedServiceTypes = new[]
         {
             typeof(PagamentoAprovadoConsumer),
+            typeof(PagamentoRecusadoConsumer),
             typeof(PreparoPedidoIniciadoConsumer),
             typeof(PreparoPedidoFinalizadoConsumer),
             typeof(EntregaPedidoRealizadaConsumer)
@@ -65,6 +81,18 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
         {
             services.Remove(descriptor);
         }
+    }
+
+    private void RemoveProducers(IServiceCollection services)
+    {
+        var descriptors = services.Where(d => d.ServiceType == typeof(IProducer) && d.ImplementationType == typeof(AwsProducer)).ToList();
+
+        foreach (var descriptor in descriptors)
+        {
+            services.Remove(descriptor);
+        }
+
+        services.AddScoped<IProducer, FakeProducer>();
     }
 
     private void AddDbContextInMemory(IServiceCollection services)

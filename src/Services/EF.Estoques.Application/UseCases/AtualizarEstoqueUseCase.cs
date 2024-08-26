@@ -21,7 +21,7 @@ public class AtualizarEstoqueUseCase : CommonUseCase, IAtualizarEstoqueUseCase
         var estoque = await GetEstoque(dto);
         estoque.AdicionarMovimentacao(new MovimentacaoEstoque(estoque.Id, dto.ProdutoId, dto.Quantidade,
             dto.TipoMovimentacao,
-            dto.OrigemMovimentacao, DateTime.Now));
+            dto.OrigemMovimentacao, DateTime.Now.ToUniversalTime()));
         await _estoqueRepository.Salvar(estoque);
         await PersistData(_estoqueRepository.UnitOfWork);
         if (!ValidationResult.IsValid) return OperationResult<Guid>.Failure(ValidationResult);

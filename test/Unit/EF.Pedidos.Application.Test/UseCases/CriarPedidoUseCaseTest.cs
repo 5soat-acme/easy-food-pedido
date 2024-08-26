@@ -38,6 +38,7 @@ public class CriarPedidoUseCaseTest
         // Arrange
         var criarPedidoDto = _fixture.Build<CriarPedidoDto>()
             .With(x => x.ClienteCpf, "90190274093")
+            .With(x => x.TipoPagamento, TipoPagamento.Pix.ToString())
             .Create();
         var cupomDto = _fixture.Create<CupomDto>();
         cupomDto.Produtos.Add(new CupomDto.CupomProdutoDto()
@@ -73,6 +74,7 @@ public class CriarPedidoUseCaseTest
         // Arrange
         var criarPedidoDto = _fixture.Build<CriarPedidoDto>()
             .With(x => x.ClienteCpf, "90190274093")
+            .With(x => x.TipoPagamento, TipoPagamento.Pix.ToString())
             .Create();
         var produtosDto = criarPedidoDto.Itens.Select(x => _fixture.Build<ProdutoDto>()
                                                                 .With(k => k.Id, x.ProdutoId)
@@ -101,6 +103,7 @@ public class CriarPedidoUseCaseTest
         // Arrange
         var criarPedidoDto = _fixture.Build<CriarPedidoDto>()
             .With(x => x.ClienteCpf, "90190274093")
+            .With(x => x.TipoPagamento, TipoPagamento.Pix.ToString())
             .Create();
 
         _cupomService.Setup(x => x.ObterCupomPorCodigo(It.IsAny<string>())).ReturnsAsync((CupomDto?)null);
@@ -116,11 +119,34 @@ public class CriarPedidoUseCaseTest
     }
 
     [Fact]
+    public async Task DeveGerarExcecao_QuandoCriarPedidoComTipoPagamentoInvalido()
+    {
+        // Arrange
+        var criarPedidoDto = _fixture.Build<CriarPedidoDto>()
+            .With(x => x.ClienteCpf, "90190274093")
+            .With(x => x.TipoPagamento, "invalido")
+            .Create();
+
+        // Act
+        var resultado = await _criarPedidoUseCase.Handle(criarPedidoDto);
+
+        // Assert
+        _estoqueService.Verify(x => x.VerificarEstoque(It.IsAny<Guid>(), It.IsAny<int>()), Times.Never);
+        _pedidoRepository.Verify(x => x.Criar(It.IsAny<Pedido>()), Times.Never);
+        _pedidoRepository.Verify(x => x.UnitOfWork.Commit(), Times.Never);
+        _produtoService.Verify(x => x.ObterPorId(It.IsAny<Guid>()), Times.Never);
+        resultado.IsValid.Should().BeFalse();
+        resultado.ValidationResult.IsValid.Should().BeFalse();
+        resultado.GetErrorMessages().Count(x => x == "Tipo de pagamento inválido").Should().Be(1);
+    }
+
+    [Fact]
     public async Task DeveGerarExcecao_QuandoCommitGerarErro()
     {
         // Arrange
         var criarPedidoDto = _fixture.Build<CriarPedidoDto>()
             .With(x => x.ClienteCpf, "90190274093")
+            .With(x => x.TipoPagamento, TipoPagamento.Pix.ToString())
             .Create();
         var cupomDto = _fixture.Create<CupomDto>();
         cupomDto.Produtos.Add(new CupomDto.CupomProdutoDto()

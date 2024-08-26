@@ -6,6 +6,7 @@ using EF.Pedidos.Application.Events;
 using EF.Pedidos.Application.Events.Messages;
 using EF.Pedidos.Application.Events.Queues;
 using System.Text.Json;
+using EF.Core.Commons.Messages.Integrations;
 
 namespace EF.Pedidos.Application.Test.Events;
 
@@ -36,5 +37,21 @@ public class PedidoEventHandlerTest
 
         // Assert
         _producerMock.Verify(x => x.SendMessageAsync(QueuesNames.PedidoRecebido.ToString(), pedidoRecebidoEventJson), Times.Once);
+    }
+
+    [Fact]
+    public async Task DeveExecutarEventoPedidoCriado()
+    {
+        // Arrange
+        var pedidoCriadoEvent = _fixture.Create<PedidoCriadoEvent>();
+        var pedidoCriadoEventJson = JsonSerializer.Serialize(pedidoCriadoEvent);
+
+        _producerMock.Setup(x => x.SendMessageAsync(QueuesNames.PedidoCriado.ToString(), pedidoCriadoEventJson));
+
+        // Act
+        await _pedidoEventHandler.Handle(pedidoCriadoEvent);
+
+        // Assert
+        _producerMock.Verify(x => x.SendMessageAsync(QueuesNames.PedidoCriado.ToString(), It.IsAny<string>()), Times.Once);
     }
 }

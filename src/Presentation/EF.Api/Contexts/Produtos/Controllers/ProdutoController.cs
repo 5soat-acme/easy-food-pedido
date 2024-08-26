@@ -4,10 +4,12 @@ using EF.Produtos.Application.DTOs.Responses;
 using EF.Produtos.Application.UseCases.Interfaces;
 using EF.Produtos.Domain.Models;
 using EF.WebApi.Commons.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EF.Api.Contexts.Produtos.Controllers;
 
+[Authorize]
 [Route("api/produtos")]
 public class ProdutoController : CustomControllerBase
 {

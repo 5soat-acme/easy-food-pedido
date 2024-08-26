@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EF.Api.Contexts.Pedidos.Controllers;
 
+[Authorize]
 [Route("api/pedidos")]
 public class PedidoController(
     IConsultarPedidoUseCase consultarPedidoUseCase,

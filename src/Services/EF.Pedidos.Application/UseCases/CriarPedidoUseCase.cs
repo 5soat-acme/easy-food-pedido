@@ -30,6 +30,11 @@ public class CriarPedidoUseCase : CommonUseCase, ICriarPedidoUseCase
 
     public async Task<OperationResult<Guid>> Handle(CriarPedidoDto criarPedidoDto)
     {
+        if(!Enum.TryParse(criarPedidoDto.TipoPagamento, out TipoPagamento resultado))
+        {
+           return OperationResult<Guid>.Failure("Tipo de pagamento inválido");
+        }
+
         var pedido = await MapearPedido(criarPedidoDto);
 
         if (!string.IsNullOrEmpty(criarPedidoDto.CodigoCupom))
@@ -44,7 +49,17 @@ public class CriarPedidoUseCase : CommonUseCase, ICriarPedidoUseCase
         {
             AggregateId = pedido.Id,
             SessionId = criarPedidoDto.SessionId,
-            ClienteId = criarPedidoDto.ClienteId
+            ClienteId = criarPedidoDto.ClienteId,
+            Itens = pedido.Itens.Select(x => new PedidoCriadoEvent.ItemPedido()
+            {
+                ProdutoId = x.ProdutoId,
+                Quantidade = x.Quantidade
+            }).ToList(),
+            Pagamento = new PedidoCriadoEvent.PagamentoInfo()
+            {
+                TipoPagamento = criarPedidoDto.TipoPagamento,
+                ValorTotal = pedido.ValorTotal
+            }
         });
         await PersistData(_pedidoRepository.UnitOfWork);
 

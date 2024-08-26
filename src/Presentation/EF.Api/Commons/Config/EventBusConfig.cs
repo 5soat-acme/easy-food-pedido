@@ -1,6 +1,7 @@
 using EF.Carrinho.Application.Events;
 using EF.Core.Commons.Messages;
 using EF.Core.Commons.Messages.Integrations;
+using EF.Estoques.Application.Events;
 using EF.Infra.Commons.EventBus;
 using EF.Pedidos.Application.Events;
 using EF.Pedidos.Application.Events.Messages;
@@ -16,8 +17,15 @@ public static class EventBusConfig
         // Carrinho
         services.AddScoped<IEventHandler<PedidoCriadoEvent>, CarrinhoEventHandler>();
 
+        // Estoque
+        services.AddScoped<IEventHandler<PedidoCriadoEvent>, EstoqueEventHandler>();
+        services.AddScoped<IEventHandler<PedidoCanceladoEvent>, EstoqueEventHandler>();
+
+        // Pagamento
+        services.AddScoped<IEventHandler<PedidoCriadoEvent>, PedidoEventHandler>();
+
         // Preparo entrega
-        services.AddScoped<IEventHandler<PedidoRecebidoEvent>, PedidoEventHandler>();
+        services.AddScoped<IEventHandler<PedidoRecebidoEvent>, PedidoEventHandler>();        
 
         return services;
     }
@@ -30,6 +38,9 @@ public static class EventBusConfig
         var bus = services.GetRequiredService<IEventBus>();
         
         services.GetRequiredService<IEnumerable<IEventHandler<PedidoCriadoEvent>>>().ToList()
+            .ForEach(e => bus.Subscribe(e));
+
+        services.GetRequiredService<IEnumerable<IEventHandler<PedidoCanceladoEvent>>>().ToList()
             .ForEach(e => bus.Subscribe(e));
 
         services.GetRequiredService<IEnumerable<IEventHandler<PedidoRecebidoEvent>>>().ToList()

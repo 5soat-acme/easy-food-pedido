@@ -23,7 +23,7 @@ public static class ApiConfig
 
         services.AddEventBusConfig();
 
-        services.RegisterServicesIdentidade();
+        services.RegisterServicesIdentidade(configuration);
         services.RegisterServicesCarrinho(configuration);
         services.RegisterServicesCupons(configuration);
         services.RegisterServicesEstoques(configuration);
@@ -35,6 +35,7 @@ public static class ApiConfig
         services.AddJwtConfiguration(configuration);
         services.AddMessageriaConfig(configuration);
         services.AddHostedService<PagamentoAprovadoConsumer>();
+        services.AddHostedService<PagamentoRecusadoConsumer>();
         services.AddHostedService<PreparoPedidoIniciadoConsumer>();
         services.AddHostedService<PreparoPedidoFinalizadoConsumer>();
         services.AddHostedService<EntregaPedidoRealizadaConsumer>();
@@ -47,6 +48,12 @@ public static class ApiConfig
         app.UseSwaggerConfig();
 
         app.UseHttpsRedirection();
+
+        app.Use(async (context, next) =>
+        {
+            context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+            await next();
+        });
 
         app.MapControllers();
 
